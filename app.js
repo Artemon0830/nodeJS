@@ -4,16 +4,15 @@ const foo= async ()=> {
     //створення шляху
     const baseFolder = path.join(__dirname, 'baseFolder')
     console.log(baseFolder)
-    //створення папки
-    await fsPromises.mkdir(baseFolder, {recursive: true})
     //створення папок
     for (let i = 1; i <= 5; i++) {
         const folder = path.join(baseFolder, `folder${i}`)
         console.log(folder)
         await fsPromises.mkdir(folder, {recursive: true})
         //створення файлів
-        const file = path.join(folder, 'file.txt')
-        console.log(file)
+        for(let j=1;j<=5;j++){
+        const file = path.join(folder, `file${j}.txt`)
+        console.log(file)}
         await fsPromises.writeFile(file, 'Hello world\n')
         await fsPromises.appendFile(file, 'March 2024')
         //прочитання файлу
@@ -27,6 +26,7 @@ const foo= async ()=> {
         //iнформація про файл
         const statFile = await fsPromises.stat(file)
         console.log('info for file',statFile.isFile())
+    
     }
 
 
